@@ -1,0 +1,64 @@
+{
+    "name": "سورس لـورد للقران",
+    "description": "- سـورس〔 اللــورد - ELORD 〕..  القـران لـ تشغيـل الـقـران والفيديـو والبثـوث المباشـرة فـي المكالمـات الصوتيـه والمرئيـة عـلى تيليجــرام",
+    "logo": "https://graph.org/file/46a9ce91a375639d65fbd.jpg",
+    "keywords": [
+    "python3",
+    "telegram",
+    "bot",
+    "Zelzal",
+    "MusicBot",
+    "telegram-bot",
+    "pyrogram"
+    ],
+    "env": {
+      "BOT_TOKEN": {
+        "description": "تـــوكـــن البـــوت - من بـوت فـاذر〔 @Botfather 〕..",
+        "value": "",
+        "required": true
+      },
+      "OWNER_ID": {
+        "description": "ايـــدي المطـــور - مطـــور بـــوت الميـــوزك〔 ايدي حسابك 〕..",
+        "value": "",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "كـــود تيـــرمكـــس - كـود جلسـة الحسـاب المساعـد لـ الميـوزك بايـروجـرام v2 مـن البـوت〔 @T66bot 〕.. ",
+        "value": "",
+        "required": true
+      },
+      "HEROKU_API_KEY": {
+        "description": "كـــود مفتـــاح هيروكـــو - تروح ع الرابـط »〔 https://dashboard.heroku.com/account 〕 ع آخـر خانـه وتنسـخ الكـود لهنـا",
+        "value": "",
+        "required": false
+      },
+      "HEROKU_APP_NAME": {
+        "description": "اســـم التطبيـــق - نفـس اول مربـع بالقائمـة نسـخ لصـق حـروف انكلـش سمــول〔 صغيـره فقـط 〕..",
+        "value": "",
+        "required": false
+      },
+      "LOGGER_ID": {
+        "description": "ادخــل ايــدي مجمـوعــة السجــل بجـانب الرقـم -100 فـي المربـع〔 سوي مجموعة جديدة وروح لاعدادات المجموعة وخلي السجل ظاهر .. بعدها ارفع البوت والحساب المساعد إشـراف وافتـح المكالمه بعدها جيب ايدي المجموعة لهنـا 〕..",
+        "value": "-100",
+        "required": true
+      }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "heroku/nodejs"
+          },
+          {
+              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          }
+      ],
+      "formation": {
+          "worker": {
+              "quantity": 1,
+              "size": "basic"
+          }
+      },
+      "stack": "container"
+  }
