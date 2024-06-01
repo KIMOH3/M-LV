@@ -14,7 +14,8 @@ async def maker(client: Client, message: Message):
     else:
         photo_url = "https://example.com/default_profile_photo.jpg"
 
-    await message.reply_photo(
+    await app.send_photo(
+        chat_id=message.chat.id,
         photo=photo_url,
         caption="~ 𝐃𝐞𝐯 𝐁𝐨𝐓",
         reply_markup=InlineKeyboardMarkup(
