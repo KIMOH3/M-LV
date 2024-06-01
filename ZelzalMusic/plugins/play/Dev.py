@@ -13,13 +13,12 @@ async def maker(client: Client, message: Message):
     user = await app.get_users(config.OWNER_ID)
     
     if user.photo:
-        # استخدام مكتبة requests لتحميل الصورة
+        # استخدام مكتبة io لتحميل الصورة
         photo_url = user.photo.big_file_id
-        response = requests.get(photo_url)
+        photo_data = io.BytesIO(await app.download_media(photo_url))
         
-        # التحقق من نجاح عملية التنزيل
-        if response.status_code == 200:
-            photo_data = response.content
+        # التحقق من أن البيانات تم تحميلها بنجاح
+        if photo_data:
             await app.send_photo(
                 chat_id=message.chat.id,
                 photo=photo_data,
