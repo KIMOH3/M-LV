@@ -13,41 +13,22 @@ async def maker(client: Client, message: Message):
     user = await app.get_users(config.OWNER_ID)
     
     if user.photo:
-        # استخدام مكتبة io لتحميل الصورة
+        # استخدام رابط الصورة المباشرة من ملف الشخصي
         photo_url = user.photo.big_file_id
-        photo_data = io.BytesIO(await app.download_media(photo_url))
-        
-        # التحقق من أن البيانات تم تحميلها بنجاح
-        if photo_data:
-            await app.send_photo(
-                chat_id=message.chat.id,
-                photo=photo_data,
-                caption="~ 𝐃𝐞𝐯 𝐁𝐨𝐓",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                "𓆩👨‍💻︙مطور الـبـوت 𓆪", url=f"tg://openmessage?user_id={config.OWNER_ID}"
-                            ),
-                        ],
-                    ]
-                ),
-            )
-        else:
-            await app.send_message(message.chat.id, text="فشل في تحميل الصورة من ملف الشخصي.")
     else:
         photo_url = "https://telegra.ph/file/dbacb042fe3d9276c687e.jpg"
-        await app.send_photo(
-            chat_id=message.chat.id,
-            photo=photo_url,
-            caption="~ 𝐃𝐞𝐯 𝐁𝐨𝐓",
-            reply_markup=InlineKeyboardMarkup(
+
+    await app.send_photo(
+        chat_id=message.chat.id,
+        photo=photo_url,
+        caption="~ 𝐃𝐞𝐯 𝐁𝐨𝐓",
+        reply_markup=InlineKeyboardMarkup(
+            [
                 [
-                    [
-                        InlineKeyboardButton(
-                            "𓆩👨‍💻︙مطور الـبـوت 𓆪", url=f"tg://openmessage?user_id={config.OWNER_ID}"
-                        ),
-                    ],
-                ]
-            ),
-        )
+                    InlineKeyboardButton(
+                        "𓆩👨‍💻︙مطور الـبـوت 𓆪", url=f"tg://openmessage?user_id={config.OWNER_ID}"
+                    ),
+                ],
+            ]
+        ),
+    )
