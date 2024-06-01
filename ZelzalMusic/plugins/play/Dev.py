@@ -8,14 +8,10 @@ import config
     command(["المطور", "مطور"])
 )
 async def maker(client: Client, message: Message):
-    # جلب معلومات المستخدم
     user = await app.get_users(config.OWNER_ID)
-    
-    # التحقق مما إذا كان لديه صورة ملف شخصي
     if user.photo:
         photo_url = user.photo.big_file_id
     else:
-        # في حالة عدم وجود صورة ملف شخصي، يمكنك استخدام صورة افتراضية أو رابط صورة أخرى
         photo_url = "https://example.com/default_profile_photo.jpg"
 
     await message.reply_photo(
