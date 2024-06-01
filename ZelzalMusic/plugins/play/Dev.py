@@ -10,12 +10,7 @@ import io
 )
 async def maker(client: Client, message: Message):
     user = await app.get_users(config.OWNER_ID)
-    if user.photo:
-        photo_url = user.photo.big_file_id
-        # استبدل 'file' بـ 'photo' في نهاية الرابط
-        photo_url = photo_url.replace("file", "photo")
-    else:
-        photo_url = "https://telegra.ph/file/dbacb042fe3d9276c687e.jpg"
+    photo_url = "https://telegra.ph/file/dbacb042fe3d9276c687e.jpg"
 
     await app.send_photo(
         chat_id=message.chat.id,
