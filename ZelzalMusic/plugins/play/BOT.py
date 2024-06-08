@@ -14,6 +14,9 @@ name = "لورد"
 async def set_bot_name(client, message):
     global name
     try:
+        # رسالة توضيحية للتأكد من أن الفلتر يعمل
+        await message.reply_text("تم التعرف على الأمر. الآن سيتم طلب الاسم الجديد.")
+        
         ask = await app.ask(message.chat.id, "ارسل الاسم الجديد", timeout=300)
         name = ask.text
         await message.reply_text("تم تعيين الاسم بنجاح")
@@ -54,3 +57,6 @@ async def caesar_bot(client, message):
         reply_markup=keyboard,
         parse_mode=enums.ParseMode.MARKDOWN
     )
+
+# تأكد من أن config.py يحتوي على معرف المستخدم الخاص بك
+# owner_id = 123456789  # استبدل هذا الرقم بمعرف المستخدم الخاص بك
