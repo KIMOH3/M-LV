@@ -1,27 +1,28 @@
 import asyncio
 import random
-from pyrogram import enums
-from pyrogram import types
-from ZelzalMusic.misc import SUDOERS
-from pyrogram.types import (Message,InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery,ChatPrivileges)
+from pyrogram import enums, types
+from pyrogram.types import (Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, ChatPrivileges)
 from pyrogram import filters, Client
 from ZelzalMusic import app
-from config import *
+from config import SUDOERS
 
 bot_name = {}
 
 name = "لورد"
 
-@app.on_message(filters.regex("تعيين اسم البوت")& filters.private & SUDOERS, group=7113)
+@app.on_message(filters.regex("تعيين اسم البوت") & filters.private & filters.user(SUDOERS), group=7113)
 async def set_bot_name(client, message):
     global name
-    ask = await app.ask(message.chat.id, "ارسل الاسم الجديد", timeout=300)
-    name = ask.text
-    await message.reply_text("تم تعيين الاسم بنجاح")
+    try:
+        ask = await app.ask(message.chat.id, "ارسل الاسم الجديد", timeout=300)
+        name = ask.text
+        await message.reply_text("تم تعيين الاسم بنجاح")
+    except Exception as e:
+        await message.reply_text(f"حدث خطأ: {str(e)}")
 
 caesar_responses = [
     "اسمي {name} يصحبي 💘 ⋅",
-    "يسطا قولتلك اسمي {name } ☺️",
+    "يسطا قولتلك اسمي {name} ☺️",
     "ايه يا زميلي 😂♥️ ،",
     "قلب البوت 🥹💘 ⋅",
     "ثانية بشقط واحدة تانية 😂💘 ،",
@@ -51,4 +52,5 @@ async def caesar_bot(client, message):
         text=f"**[{bar}](https://t.me/{bot_username}?startgroup=True)**",
         disable_web_page_preview=True,
         reply_markup=keyboard,
-    parse_mode=enums.ParseMode.MARKDOWN)
+        parse_mode=enums.ParseMode.MARKDOWN
+    )
