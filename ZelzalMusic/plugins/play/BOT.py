@@ -4,13 +4,13 @@ from pyrogram import enums, types
 from pyrogram.types import (Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, ChatPrivileges)
 from pyrogram import filters, Client
 from ZelzalMusic import app
-from config import SUDOERS
+import config  # تأكد من استيراد config بشكل صحيح
 
 bot_name = {}
 
 name = "لورد"
 
-@app.on_message(filters.regex("تعيين اسم البوت") & filters.private & filters.user(SUDOERS), group=7113)
+@app.on_message(filters.regex("تعيين اسم البوت") & filters.private & filters.user(config.OWNER_ID), group=7113)
 async def set_bot_name(client, message):
     global name
     try:
